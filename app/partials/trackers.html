@@ -1,1 +1,5 @@
-<div ng-repeat="tracker in trackers" ng-click="addEvent(tracker)">{{tracker.name}}: {{tracker.eventCount}}</div>
+
+
+<a href="#/new-tracker">Add New Tracker</a>
+
+<div ng-repeat="tracker in trackers" ng-click="addEvent(tracker)">{{tracker.name}}: {{tracker.eventTimes}}</div>
