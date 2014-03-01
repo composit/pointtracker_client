@@ -1,5 +1,21 @@
 
 
-<a href="#/new-tracker">Add New Tracker</a>
+<a href="#/new-tracker">Add New Tracker</a> <br>
 
-<div ng-repeat="tracker in trackers" ng-click="addEvent(tracker)">{{tracker.name}}: {{tracker.eventTimes}}</div>
+<input type="checkbox" ng-model="showRemove"><span>Remove Tracker</span> <br>
+
+<a href="#/graph-trackers">Graph</a>
+<hr>
+
+<div ng-repeat="tracker in trackers">
+    
+    
+<div>
+        
+  <span ng-click="addEvent(tracker)">{{tracker.name}}: {{tracker.eventTimes}}</span>
+
+    <span ng-show="showRemove" class="remove-tracker" ng-click="removeEvent(tracker)">-</span>
+
+  </div>
+
+</div>

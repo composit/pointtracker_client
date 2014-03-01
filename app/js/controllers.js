@@ -18,6 +18,22 @@ $scope.trackers = Tracker;
     $scope.addTracker = function() { 
         $scope.trackers.push({ name: $scope.newTrackerName, eventTimes: [] });
         $location.path("/");
+        //TODO send new tracker info to server
     };
+    
+    $scope.removeEvent = function( tracker ) { 
+        var index = $scope.trackers.indexOf(tracker);
+        
+        $scope.trackers.splice(index, 1); };
 
-  }]);
+  }])  //end TrackerCtrl
+  
+  
+          .controller('GraphCtrl', ['$scope', 'Tracker', function($scope, Tracker) {
+             $scope.trackers = Tracker;
+             $scope.graphTrackers = {};
+          
+              $scope.createGraph = function() { };
+          
+          
+            }]);  //end GraphCtrl
