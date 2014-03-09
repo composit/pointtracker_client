@@ -11,7 +11,6 @@ angular.module('myApp', [
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/', {templateUrl: 'partials/trackers.html', controller: 'TrackerCtrl'});
-   $routeProvider.when('/new-tracker', {templateUrl: 'partials/new-tracker.html', controller: 'TrackerCtrl'});
-     $routeProvider.when('/graph-trackers', { templateUrl: 'partials/graph-trackers.html', controller: 'GraphCtrl' }); 
+  $routeProvider.when('/graph-trackers', { templateUrl: 'partials/graph-trackers.html', controller: 'GraphCtrl' }); 
   $routeProvider.otherwise({redirectTo: '/'});
 }]);

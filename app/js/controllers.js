@@ -9,6 +9,7 @@ angular.module('myApp.controllers', []).
         
           
 $scope.trackers = Tracker;
+$scope.showIt = false;
 
           
     $scope.addEvent = function( tracker ) { tracker.eventTimes.push( new Date() );
@@ -17,14 +18,28 @@ $scope.trackers = Tracker;
     
     $scope.addTracker = function() { 
         $scope.trackers.push({ name: $scope.newTrackerName, eventTimes: [] });
-        $location.path("/");
+        $scope.newTrackerName = "";
+        $scope.showIt = false;
+        
+       
         //TODO send new tracker info to server
     };
     
-    $scope.removeEvent = function( tracker ) { 
+    $scope.closeAddTrackerBox = function() {
+      $scope.showIt = false; 
+      $scope.newTrackerName = "";
+        
+    };
+    
+    $scope.removeTracker = function( tracker ) { 
         var index = $scope.trackers.indexOf(tracker);
         
         $scope.trackers.splice(index, 1); };
+    
+    $scope.removeLastEvent = function( tracker ) {
+        var index = $scope.trackers.indexOf(tracker);
+        $scope.trackers[index].eventTimes.pop();
+    };
 
   }])  //end TrackerCtrl
   

@@ -1,10 +1,34 @@
 
+<div ng-hide="showIt">
+<button ng-click="showIt = true" >Add New Tracker</button> <br>
+</div>
 
-<a href="#/new-tracker">Add New Tracker</a> <br>
 
-<input type="checkbox" ng-model="showRemove"><span>Remove Tracker</span> <br>
+<div ng-show="showIt">
 
-<a href="#/graph-trackers">Graph</a>
+<h1>New Tracker</h1>
+
+<form ng-submit="addTracker()">
+<input ng-model="newTrackerName" focus-on>
+
+
+<input type="submit" value="Add Tracker">
+<button type="button" ng-click="closeAddTrackerBox()">Cancel</button>
+
+</form>
+
+</div>
+
+
+
+
+
+
+<input type="checkbox" ng-model="showRemove"><span>Remove Tracker</span>
+<input type="checkbox" ng-model="showRemoveEvent"><span>Undo Event</span>
+<br>
+
+
 <hr>
 
 <div ng-repeat="tracker in trackers">
@@ -14,7 +38,8 @@
         
   <span ng-click="addEvent(tracker)">{{tracker.name}}: {{tracker.eventTimes}}</span>
 
-    <span ng-show="showRemove" class="remove-tracker" ng-click="removeEvent(tracker)">-</span>
+    <span ng-show="showRemove" class="remove-tracker" ng-click="removeTracker(tracker)">-</span>
+    <span ng-show="showRemoveEvent" ng-click="removeLastEvent(tracker)">undo last</span> 
 
   </div>
 
