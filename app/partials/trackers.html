@@ -25,22 +25,33 @@
 
 
 <input type="checkbox" ng-model="showRemove"><span>Remove Tracker</span>
-<input type="checkbox" ng-model="showRemoveEvent"><span>Undo Event</span>
 <br>
 
 
 <hr>
 
-<div ng-repeat="tracker in trackers">
+<ul>
+<li ng-repeat="tracker in trackers" >
     
+    <span ng-click="toggletrackerdialog(tracker)">
     
-<div>
-        
-  <span ng-click="addEvent(tracker)">{{tracker.name}}: {{tracker.eventTimes}}</span>
+    <span ng-hide="tracker.trackerdialog" >{{tracker.name}}</span>
+    
+    <div ng-show="tracker.trackerdialog">        
+        <span ng-click="addEvent(tracker)">Track It!: {{tracker.eventTimes}}</span>
+        <span ng-click="">Cancel</span>
+            <span ng-click="removeLastEvent(tracker)">undo last</span> 
+
+    </div>
 
     <span ng-show="showRemove" class="remove-tracker" ng-click="removeTracker(tracker)">-</span>
-    <span ng-show="showRemoveEvent" ng-click="removeLastEvent(tracker)">undo last</span> 
+    
 
-  </div>
+    
+    </span>
+    
 
-</div>
+
+
+</li>
+</ul>

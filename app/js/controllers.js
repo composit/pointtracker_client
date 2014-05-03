@@ -4,7 +4,7 @@
  
 
 angular.module('myApp.controllers', []).
-  controller('TrackerCtrl', ['$scope', '$http', '$location', 'Tracker', function($scope, $http, $location, Tracker) {
+  controller('TrackerCtrl', ['$scope', '$http', '$location', 'Tracker','Dialog', function($scope, $http, $location, Tracker, Dialog) {
           
         
           
@@ -14,6 +14,9 @@ $scope.showIt = false;
           
     $scope.addEvent = function( tracker ) { tracker.eventTimes.push( new Date() );
         //TODO send time info to server
+        $scope.dialog = Dialog;
+        $scope.dialog.state = true;
+        $scope.dialog.message = 'Tracked!';
     };
     
     $scope.addTracker = function() { 
@@ -40,8 +43,25 @@ $scope.showIt = false;
         var index = $scope.trackers.indexOf(tracker);
         $scope.trackers[index].eventTimes.pop();
     };
+    
+    
+    $scope.toggletrackerdialog = function(tracker) {
+        tracker.trackerdialog = !tracker.trackerdialog;
+        
+        
+    };
+    
+    
 
   }])  //end TrackerCtrl
+            .controller('DialogCtrl', ['$scope', 'Tracker', 'Dialog','$timeout', function($scope, Tracker, Dialog, $timeout) {
+        $scope.dialog = Dialog;
+
+        $scope.$watch('dialog.state', function() { console.log($scope.dialog.state); $timeout(function(){ $scope.dialog.state = false; }, 2000);     } )
+
+          
+          
+            }])
   
   
           .controller('GraphCtrl', ['$scope', 'Tracker', function($scope, Tracker) {
